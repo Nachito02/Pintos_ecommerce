@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    background-color: #e1e1e1;
+    gap: 5rem;
+}
+
+.nav_container {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.nav_container div {
+    flex: 1;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+}

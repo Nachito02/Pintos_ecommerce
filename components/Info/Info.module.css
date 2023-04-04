@@ -1,0 +1,20 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    margin-top: 4rem;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    place-items: center;
+}
+
+.text_info {
+    text-align: center;
+    
+}   
+
+.text_info p {
+
+    margin: .5rem 0;
+}

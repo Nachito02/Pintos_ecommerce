@@ -1,0 +1,31 @@
+.container_img img {
+    max-width: 100%;
+}
+
+.container_img {
+   width: 18rem!important;
+}
+
+.slider {
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.info {
+    background-color: gray;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.info p:first-of-type {
+    font-weight: bold;
+
+}

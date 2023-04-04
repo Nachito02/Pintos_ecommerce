@@ -1,0 +1,21 @@
+.container_img {
+
+padding: 0rem 2rem;
+
+}
+
+.container_img img{
+    transition: transform .3s ease;
+
+    max-width: auto;
+}
+.container_img img:hover {
+
+   transform: scale(1.02);
+    }
+    
+.slider{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
