@@ -1,4 +1,16 @@
 
+.cart {
+  display:flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cart p {
+  margin: 0;
+}
+
+.cart svg {
+  width: 1.5rem;
+}
 
 .search {
 width: 20rem;
@@ -7,12 +19,21 @@ width: 20rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
 
   .header_link {
     display: flex;
     gap: 2rem;
+    text-decoration: none;
+  }
+
+  
+  .header_link a {
+ 
+    text-decoration: none;
+    color : black;
+    
   }
 
   .container {

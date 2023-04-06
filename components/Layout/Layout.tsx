@@ -4,6 +4,9 @@ import style from "./Layout.module.css";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Image from "next/image";
 import Footer from "../Footer/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 const Layout = ({ children }: any) => {
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
@@ -41,7 +44,12 @@ const Layout = ({ children }: any) => {
           <div className={style.header_link}>
             <Link href={"/login"}>Acceder</Link>
 
-            <Link href={"/cart"}>Carrito</Link>
+            <Link href={"/cart"} className={style.cart}>
+              <p>Carrito</p>
+              <FontAwesomeIcon icon={faCartShopping} />
+               </Link>
+           
+            
           </div>
         </div>
 
