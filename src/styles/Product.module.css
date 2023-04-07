@@ -1,5 +1,15 @@
-.carousel {
-    width: 21rem;
-    border: 1px solid black;
+
+
+.slider {
+   width: 40%;
     margin: 0 auto;
+}
+
+
+.Image {
+    background-color: red!important;
+}
+
+.container {
+    width: 100%;
 }
