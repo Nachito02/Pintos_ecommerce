@@ -1,13 +1,18 @@
-import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios";
+import Link from "next/link";
 import style from "./Layout.module.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import {  Navbar, NavDropdown } from "react-bootstrap";
 import Image from "next/image";
 import Footer from "../Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const Layout = ({ children }: any) => {
+
+
+
+
+const Layout = ({children,data}:any) => {
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
     setShow(!show);
@@ -15,6 +20,8 @@ const Layout = ({ children }: any) => {
   const hideDropdown = (e: any) => {
     setShow(false);
   };
+
+  console.log(data)
 
   return (
     <>
@@ -68,30 +75,18 @@ const Layout = ({ children }: any) => {
             onMouseLeave={hideDropdown}
           >
             <div className={style.grid}>
-              <div>
-                <NavDropdown.Item>Mesas</NavDropdown.Item>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </div>{" "}
-              <div>
-                <NavDropdown.Item>Mesas</NavDropdown.Item>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </div>
-              <div>
-                <NavDropdown.Item>Mesas</NavDropdown.Item>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </div>
-              <div>
-                <NavDropdown.Item>Mesas</NavDropdown.Item>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </div>
+
+              
+                {data.map(((cat :any) => 
+                  (<div>
+                  <NavDropdown.Item>{cat.CatName}</NavDropdown.Item>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                </div>)
+                ))}
+              
+             
             </div>
           </NavDropdown>
 
@@ -105,11 +100,13 @@ const Layout = ({ children }: any) => {
         </Navbar>
       </header>
 
-      {children}
+    {children}
 
       <Footer />
     </>
   );
 };
-
 export default Layout;
+
+
+
