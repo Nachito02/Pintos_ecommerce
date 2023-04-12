@@ -1,18 +1,28 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState,useContext, useEffect } from "react";
 import Link from "next/link";
 import style from "./Layout.module.css";
-import {  Navbar, NavDropdown } from "react-bootstrap";
 import Image from "next/image";
+import {  Navbar, NavDropdown } from "react-bootstrap";
 import Footer from "../Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import productContext from "../../context/AppContext/productContext";
 
 
 
+const Layout = ({children}:any) => {
 
 
-const Layout = ({children,data}:any) => {
+  const ProductContext = useContext(productContext)
+
+  const {categories, getCategories} = ProductContext
+
+
+  useEffect(() => {
+    getCategories()
+  }, [])
+  
+
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
     setShow(!show);
@@ -21,7 +31,6 @@ const Layout = ({children,data}:any) => {
     setShow(false);
   };
 
-  console.log(data)
 
   return (
     <>
@@ -68,28 +77,22 @@ const Layout = ({children,data}:any) => {
             <Link href={"/"}>Quienes somos</Link>
           </Navbar.Brand>
 
-          <NavDropdown
-            title="Productos"
-            show={show}
-            onMouseEnter={showDropdown}
-            onMouseLeave={hideDropdown}
-          >
-            <div className={style.grid}>
-
-              
-                {data.map(((cat :any) => 
-                  (<div>
-                  <NavDropdown.Item>{cat.CatName}</NavDropdown.Item>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                </div>)
-                ))}
-              
-             
-            </div>
-          </NavDropdown>
-
+          {categories === null ? (
+  <p>Cargando categorías...</p>
+) : (
+  <NavDropdown title="Productos" show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+    <div className={style.grid}>
+      {categories.map(((cat :any) => (
+        <div>
+          <NavDropdown.Item>{cat.CatName}</NavDropdown.Item>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+        </div>
+      )))}
+    </div>
+  </NavDropdown>
+)}
           <Navbar.Brand>
             <Link href={"/"}>Promociones</Link>
           </Navbar.Brand>

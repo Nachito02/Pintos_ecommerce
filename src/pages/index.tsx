@@ -5,7 +5,7 @@ import Info from "../../components/Info/Info";
 import Categories from "../../components/categories/Categories";
 import AboutIndex from "../../components/AboutIndex/AboutIndex";
 import axios from 'axios'
-export default function Home({data}:any) {
+export default function Home() {
  
 
   return (
@@ -17,7 +17,7 @@ export default function Home({data}:any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout data={data}>
+      <Layout>
         <SliderComponent />
 
         <Info />
@@ -31,24 +31,24 @@ export default function Home({data}:any) {
 }
 
 
-export async function getServerSideProps() {
-  const options = {
-    method: 'GET',
-    url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list',
-    params: {lang: 'es', country: 'us'},
-    headers: {
-      'X-RapidAPI-Key': '0325c4a014msh19346b452589069p14ea52jsn340622083236',
-      'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-    }
-  };
+// export async function getServerSideProps() {
+//   const options = {
+//     method: 'GET',
+//     url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list',
+//     params: {lang: 'es', country: 'us'},
+//     headers: {
+//       'X-RapidAPI-Key': '0325c4a014msh19346b452589069p14ea52jsn340622083236',
+//       'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+//     }
+//   };
   
 
-  try {
-    const response = await axios.request(options);
-    const data = response.data;
-    return { props: { data } };
-  } catch (error) {
-    console.error(error);
-    return { props: { data: null } };
-  }
-}
+//   try {
+//     const response = await axios.request(options);
+//     const data = response.data;
+//     return { props: { data } };
+//   } catch (error) {
+//     console.error(error);
+//     return { props: { data: null } };
+//   }
+// }

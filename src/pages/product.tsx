@@ -7,29 +7,30 @@ import { Carousel } from "react-responsive-carousel";
 import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
 
 const Product = ({ data }: any) => {
- console.log(data)
-  console.log(product.articlesList[0].galleryDetails[0].baseUrl);
 
+    const {product} = data
+
+      console.log(data)
   return (
     <Layout>
       <div className={style.container}>
-        <Carousel className={style.slider}>
+         <Carousel className={style.slider}>
           {product.articlesList &&
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&
             product.articlesList[0].galleryDetails.map((e) => (
-              <GlassMagnifier imageSrc={e.baseUrl}>
+              <SideBySideMagnifier imageSrc={e.baseUrl} alwaysInPlace={true}>
                 <img src={e.baseUrl} alt="Sillón" />
-              </GlassMagnifier>
+              </SideBySideMagnifier>
             ))}
-        </Carousel>
+        </Carousel> 
 
-        <div className={style.info_product}>
+         <div className={style.info_product}>
           <div className={style.info}>
             <p>{product.name} </p>
             <p>
-              {" "}
-              {product.redPrice.price} {product.redPrice.currency}{" "}
+              
+              {product.whitePrice.price} {product.whitePrice.currency}
             </p>
 
             <p>{product.description}</p>
@@ -58,7 +59,7 @@ export async function getServerSideProps() {
   const options = {
     method: "GET",
     url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",
-    params: { lang: "en", country: "us", productcode: "0839915011" },
+    params: { lang: "en", country: "us", productcode: "1064346001" },
     headers: {
       "X-RapidAPI-Key": "0325c4a014msh19346b452589069p14ea52jsn340622083236",
       "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",

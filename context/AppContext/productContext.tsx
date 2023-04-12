@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 
-const appContext = createContext<any>(null)
+const productContext = createContext<any>(null)
 
 
-export default appContext
+export default productContext
