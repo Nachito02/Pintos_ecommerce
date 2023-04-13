@@ -1,11 +1,14 @@
+import { useContext, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import style from "./Slider.module.css";
+import productContext from "../../context/AppContext/productContext";
 
 export function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
+
   return (
     <div
       className={className}
@@ -45,6 +48,21 @@ export function SamplePrevArrow(props: any) {
 }
 
 export default function SliderComponent() {
+
+
+  const ProductContext = useContext(productContext)
+
+  const { allProducts, getAllProducts } = ProductContext
+
+
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
+
+  console.log(allProducts)
+
+
   var settings = {
     dots: true,
     infinite: true,
@@ -57,15 +75,30 @@ export default function SliderComponent() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     centerPadding: "10px",
-    centerMode :true,
+    centerMode: true,
     className: style.center,
   };
   return (
     <>
 
 
-        <Slider {...settings} className={style.slider}>
+      <Slider {...settings} className={style.slider}>
+
+
+        { allProducts && allProducts.results.slice(0,5).map((e:any) => (
+
           <div className={style.container_img}>
+            <Image
+              src={e.images[0].baseUrl}
+              width={360}
+              height={400}
+              alt="imagen"
+            />
+
+          </div>
+        ))}
+
+        {/* <div className={style.container_img}>
             <Image
               src={"/../public/assets/envios.png"}
               width={360}
@@ -108,8 +141,8 @@ export default function SliderComponent() {
               height={400}
               alt="imagen"
             />
-          </div>
-        </Slider>
+          </div> */}
+      </Slider>
 
     </>
   );

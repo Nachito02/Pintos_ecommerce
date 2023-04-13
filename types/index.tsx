@@ -1,2 +1,3 @@
 export const GET_CATEGORIES = "GET_CATEGORIES"
 export const GET_PRODUCT = "GET_PRODUCT"
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"

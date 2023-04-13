@@ -1,5 +1,5 @@
 
-import { GET_CATEGORIES, GET_PRODUCT } from "../../types"
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT } from "../../types"
 export default (state:any,action:any) => {
 
     switch(action.type) {
@@ -14,6 +14,11 @@ export default (state:any,action:any) => {
             return {
                 ...state, productDetail: action.payload
             } 
+
+            case GET_ALL_PRODUCTS:
+                return {
+                    ...state, allProducts: action.payload
+                } 
     }
 
 }
