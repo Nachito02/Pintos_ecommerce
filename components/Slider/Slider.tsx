@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import style from "./Slider.module.css";
 import productContext from "../../context/AppContext/productContext";
-
+import Link from "next/link";
 export function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
 
@@ -52,15 +52,9 @@ export default function SliderComponent() {
 
   const ProductContext = useContext(productContext)
 
-  const { allProducts, getAllProducts } = ProductContext
+  const { allProducts } = ProductContext
 
 
-  useEffect(() => {
-    getAllProducts()
-  }, [])
-
-
-  console.log(allProducts)
 
 
   var settings = {
@@ -85,9 +79,13 @@ export default function SliderComponent() {
       <Slider {...settings} className={style.slider}>
 
 
-        { allProducts && allProducts.results.slice(0,5).map((e:any) => (
+        
 
-          <div className={style.container_img}>
+        { allProducts && allProducts.results.slice(10,20).map((e:any) => (
+
+
+          <Link key={e.code} href={`/product/${e.defaultArticle.code}`}>
+           <div className={style.container_img}>
             <Image
               src={e.images[0].baseUrl}
               width={360}
@@ -95,7 +93,7 @@ export default function SliderComponent() {
               alt="imagen"
             />
 
-          </div>
+          </div></Link>
         ))}
 
         {/* <div className={style.container_img}>

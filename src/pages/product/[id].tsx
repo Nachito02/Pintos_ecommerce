@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../../components/Layout/Layout";
+import { useRouter } from "next/router";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import style from "../styles/Product.module.css";
+import style from "../../styles/Product.module.css";
 import { Carousel } from "react-responsive-carousel";
 import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
-
-const Product = ({ data }: any) => {
+const Product = ({ data, query }: any) => {
 
     const {product} = data
 
-      console.log(data)
+      console.log(query)
   return (
     <Layout>
       <div className={style.container}>
@@ -18,8 +18,8 @@ const Product = ({ data }: any) => {
           {product.articlesList &&
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&
-            product.articlesList[0].galleryDetails.map((e) => (
-              <SideBySideMagnifier imageSrc={e.baseUrl} alwaysInPlace={true}>
+            product.articlesList[0].galleryDetails.map((e:any, index:number) => (
+              <SideBySideMagnifier key={index} imageSrc={e.baseUrl} alwaysInPlace={true}>
                 <img src={e.baseUrl} alt="Sillón" />
               </SideBySideMagnifier>
             ))}
@@ -53,13 +53,14 @@ const Product = ({ data }: any) => {
   );
 };
 
-export default Product;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({query}:any) {
+
+  console.log(query)
   const options = {
     method: "GET",
     url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",
-    params: { lang: "en", country: "us", productcode: "1064346001" },
+    params: { lang: "en", country: "us", productcode: query.id },
     headers: {
       "X-RapidAPI-Key": "0325c4a014msh19346b452589069p14ea52jsn340622083236",
       "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
@@ -69,9 +70,11 @@ export async function getServerSideProps() {
   try {
     const response = await axios.request(options);
     const data = response.data;
-    return { props: { data } };
+    return { props: { data, query } };
   } catch (error) {
     console.error(error);
     return { props: { data: null } };
   }
 }
+
+    export default Product;

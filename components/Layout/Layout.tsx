@@ -15,11 +15,12 @@ const Layout = ({children}:any) => {
 
   const ProductContext = useContext(productContext)
 
-  const {categories, getCategories} = ProductContext
+  const {categories, getCategories, getAllProducts} = ProductContext
 
 
   useEffect(() => {
     getCategories()
+    getAllProducts()
   }, [])
   
 
@@ -82,9 +83,11 @@ const Layout = ({children}:any) => {
 ) : (
   <NavDropdown title="Productos" show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
     <div className={style.grid}>
-      {categories.map(((cat :any) => (
-        <div>
-          <NavDropdown.Item>{cat.CatName}</NavDropdown.Item>
+      {categories.map(((cat :any,index:number) => (
+        <div key={index}>
+          <NavDropdown.Item>
+            <Link href={`/categories/${cat.CatName}`}>{cat.CatName}</Link>
+          </NavDropdown.Item>
           <li>
             <hr className="dropdown-divider" />
           </li>
