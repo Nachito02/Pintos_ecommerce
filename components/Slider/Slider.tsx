@@ -81,7 +81,7 @@ export default function SliderComponent() {
 
         
 
-        { allProducts && allProducts.results.slice(10,20).map((e:any) => (
+        { allProducts && allProducts.slice(10,20).map((e:any) => (
 
 
           <Link key={e.code} href={`/product/${e.defaultArticle.code}`}>

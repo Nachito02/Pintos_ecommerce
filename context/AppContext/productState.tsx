@@ -16,30 +16,6 @@ const ProductState = ({ children }: any) => {
 
   const [state, dispatch] = useReducer(productReducer, initialState)
 
-  const getCategories = async () => {
-    const options = {
-      method: 'GET',
-      url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list',
-      params: { lang: 'es', country: 'us' },
-      headers: {
-        'X-RapidAPI-Key': '0325c4a014msh19346b452589069p14ea52jsn340622083236',
-        'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      }
-    };
-
-
-    try {
-      const response = await axios.request(options);
-      const data = response.data;
-      dispatch({
-        type: GET_CATEGORIES,
-        payload: data
-      })
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
 
   const getProduct = async () => {
     const options = {
@@ -47,7 +23,7 @@ const ProductState = ({ children }: any) => {
       url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail',
       params: { lang: 'en', country: 'us', productcode: '0839915011' },
       headers: {
-        'X-RapidAPI-Key': '0325c4a014msh19346b452589069p14ea52jsn340622083236',
+        'X-RapidAPI-Key': 'd54d3f253amsh410aa104bec79e3p1c2a9ejsn8c1e19d8c2ce',
         'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
       }
     };
@@ -68,47 +44,26 @@ const ProductState = ({ children }: any) => {
 
   const getAllProducts = async () => {
 
-
-    let i = 0
-    let allProducts:any = []
-    while (i < 1) {
-
       const options = {
         method: 'GET',
-        url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list',
-        params: {
-          country: 'us',
-          lang: 'en',
-          currentpage: i,
-          pagesize: '30',
-        },
-        headers: {
-          'X-RapidAPI-Key': '0325c4a014msh19346b452589069p14ea52jsn340622083236',
-          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-        }
+        url: 'http://localhost:3001/results',
       };
-
-
 
       try {
         const response = await axios.request(options);
         const data = response.data;
-        allProducts = [...allProducts, data]
-      
+        
+        dispatch({
+          type: GET_ALL_PRODUCTS,
+          payload: data
+        })
+        
       } catch (error) {
         console.error(error);
       }
 
-      i++
-
     }
-
-
-     dispatch({
-    type: GET_ALL_PRODUCTS,
-    payload: allProducts
-  })
-  }
+   
  
 
 
@@ -118,7 +73,6 @@ const ProductState = ({ children }: any) => {
       productDetail: state.productDetail,
       categories: state.categories,
       allProducts: state.allProducts,
-      getCategories,
       getAllProducts,
     }}>
 

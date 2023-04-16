@@ -62,9 +62,9 @@ export async function getServerSideProps({query}:any) {
     url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",
     params: { lang: "en", country: "us", productcode: query.id },
     headers: {
-      "X-RapidAPI-Key": "0325c4a014msh19346b452589069p14ea52jsn340622083236",
-      "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
-    },
+      'X-RapidAPI-Key': 'd54d3f253amsh410aa104bec79e3p1c2a9ejsn8c1e19d8c2ce',
+      'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+    }
   };
 
   try {

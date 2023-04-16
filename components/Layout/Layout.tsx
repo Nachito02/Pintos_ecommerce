@@ -15,14 +15,24 @@ const Layout = ({children}:any) => {
 
   const ProductContext = useContext(productContext)
 
-  const {categories, getCategories, getAllProducts} = ProductContext
+  const { getAllProducts,allProducts} = ProductContext
+  const [categories, setCategories] = useState([])
 
-
+  const arreglo = []
   useEffect(() => {
-    getCategories()
     getAllProducts()
   }, [])
   
+
+  useEffect(() => {
+    if(allProducts) {
+      setCategories(allProducts.reduce((category, product) => {
+        if(!category.includes(product.categoryName)) {
+            
+        } 
+      }))
+     }
+  },[allProducts])
 
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {

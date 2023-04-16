@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect,useState } from 'react'
 import { useRouter } from 'next/router'
 import Layout from '../../../components/Layout/Layout'
 import productContext from '../../../context/AppContext/productContext'
@@ -9,12 +9,18 @@ const Categories = () => {
     const {allProducts} = ProductContext
     const router = useRouter()
     const {catName} = router.query
-    console.log(allProducts)
-  
+    const [products,setProducts] = useState([])
+    useEffect(() => {
+         if(allProducts) {
+          setProducts(allProducts)
+         }
+    },[allProducts])
+
+    console.log(products)
   return (
     <Layout>
     <div>{
-        allProducts?.results.filter((product:any) =>  (product.categoryName === catName)).map((e:any) => (
+       products.filter((product:any) =>  (product.categoryName === catName)).map((e:any) => (
             <p>{e.name}</p>
         ))
         }</div>
