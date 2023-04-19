@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Layout from "../../../components/Layout/Layout";
-import { useRouter } from "next/router";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import style from "../../styles/Product.module.css";
 import { Carousel } from "react-responsive-carousel";
 import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
+
+
 const Product = ({ data, query }: any) => {
 
     const {product} = data
@@ -14,7 +15,7 @@ const Product = ({ data, query }: any) => {
   return (
     <Layout>
       <div className={style.container}>
-         <Carousel className={style.slider}>
+         <Carousel className={style.slider} width={400}>
           {product.articlesList &&
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&

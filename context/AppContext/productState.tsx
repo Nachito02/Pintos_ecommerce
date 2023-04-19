@@ -1,11 +1,10 @@
 import axios, { all } from "axios";
 import { useReducer } from "react";
 import productReducer from "./productReducer";
-import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT } from "../../types";
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT,SET_CATEGORIES } from "../../types";
 import productContext from "./productContext";
 
 const ProductState = ({ children }: any) => {
-
 
   const initialState = {
     categories: null,
@@ -13,32 +12,23 @@ const ProductState = ({ children }: any) => {
     allProducts: null
   }
 
-
   const [state, dispatch] = useReducer(productReducer, initialState)
 
 
-  const getProduct = async () => {
-    const options = {
-      method: 'GET',
-      url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail',
-      params: { lang: 'en', country: 'us', productcode: '0839915011' },
-      headers: {
-        'X-RapidAPI-Key': 'd54d3f253amsh410aa104bec79e3p1c2a9ejsn8c1e19d8c2ce',
-        'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      }
-    };
+  const setCategories = () => { 
 
-
-    try {
-      const response = await axios.request(options);
-      const data = response.data;
+      const catArray = state.allProducts.reduce((categorias:any, producto:any) => {
+        if (!categorias.includes(producto.categoryName)) {
+          categorias.push(producto.categoryName);
+        }
+        return categorias;
+      }, []);
+      
       dispatch({
-        type: GET_PRODUCT,
-        payload: data
+        type: SET_CATEGORIES,
+        payload:catArray
       })
-    } catch (error) {
-      console.error(error);
-    }
+
   }
 
 
@@ -64,16 +54,13 @@ const ProductState = ({ children }: any) => {
 
     }
    
- 
-
-
-
   return (
     <productContext.Provider value={{
       productDetail: state.productDetail,
       categories: state.categories,
       allProducts: state.allProducts,
       getAllProducts,
+      setCategories
     }}>
 
       {children}

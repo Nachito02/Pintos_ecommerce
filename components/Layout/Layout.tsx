@@ -15,8 +15,8 @@ const Layout = ({children}:any) => {
 
   const ProductContext = useContext(productContext)
 
-  const { getAllProducts,allProducts} = ProductContext
-  const [categories, setCategories] = useState([])
+  const { getAllProducts,allProducts,categories,setCategories} = ProductContext
+  
 
   const arreglo = []
   useEffect(() => {
@@ -26,13 +26,13 @@ const Layout = ({children}:any) => {
 
   useEffect(() => {
     if(allProducts) {
-      setCategories(allProducts.reduce((category, product) => {
-        if(!category.includes(product.categoryName)) {
-            
-        } 
-      }))
-     }
-  },[allProducts])
+      setCategories()
+    }
+  console.log(categories)
+
+    }
+
+  , [allProducts]);
 
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
@@ -96,7 +96,7 @@ const Layout = ({children}:any) => {
       {categories.map(((cat :any,index:number) => (
         <div key={index}>
           <NavDropdown.Item>
-            <Link href={`/categories/${cat.CatName}`}>{cat.CatName}</Link>
+            <Link href={`/categories/${cat}`}>{cat}</Link>
           </NavDropdown.Item>
           <li>
             <hr className="dropdown-divider" />

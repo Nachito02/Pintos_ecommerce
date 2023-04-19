@@ -1,9 +1,9 @@
 
-import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT } from "../../types"
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT, SET_CATEGORIES } from "../../types"
 export default (state:any,action:any) => {
 
     switch(action.type) {
-        case GET_CATEGORIES: 
+        case SET_CATEGORIES: 
             return {
                 ...state, categories: action.payload
             }
