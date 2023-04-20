@@ -1,7 +1,7 @@
 import axios, { all } from "axios";
 import { useReducer } from "react";
 import productReducer from "./productReducer";
-import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT,SET_CATEGORIES } from "../../types";
+import { ADD_CART, GET_ALL_PRODUCTS, UPDATE_CART, GET_PRODUCT,SET_CATEGORIES } from "../../types";
 import productContext from "./productContext";
 
 const ProductState = ({ children }: any) => {
@@ -9,7 +9,8 @@ const ProductState = ({ children }: any) => {
   const initialState = {
     categories: null,
     productDetail: null,
-    allProducts: null
+    allProducts: null,
+    cart: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')) : []
   }
 
   const [state, dispatch] = useReducer(productReducer, initialState)
@@ -54,13 +55,38 @@ const ProductState = ({ children }: any) => {
 
     }
    
+    
+    const  addCart = (product:any, quantity:number)=> { 
+
+      const existingProduct = state.cart.findIndex((p:any) => p.product.code === product.code)
+
+      if(existingProduct !== -1) {
+        const updatedCart = [...state.cart];
+        updatedCart[existingProduct].quantity = quantity;
+        dispatch({
+          type: UPDATE_CART,
+          payload: updatedCart
+        });
+      } else {
+        dispatch({
+          type: ADD_CART,
+          payload: {product, quantity}
+        })
+      }
+
+       
+
+      
+    }
   return (
     <productContext.Provider value={{
+      cart: state.cart,
       productDetail: state.productDetail,
       categories: state.categories,
       allProducts: state.allProducts,
       getAllProducts,
-      setCategories
+      setCategories,
+      addCart
     }}>
 
       {children}

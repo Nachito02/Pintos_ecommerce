@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../../components/Layout/Layout";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import style from "../../styles/Product.module.css";
 import { Carousel } from "react-responsive-carousel";
 import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
-
+import productContext from "../../../context/AppContext/productContext";
 
 const Product = ({ data, query }: any) => {
 
+
+    const ProductContext = useContext(productContext)
+
+    const {cart, addCart} = ProductContext
+
+  const [quantinty, setQuantity] = useState(1)
     const {product} = data
 
-      console.log(query)
+    useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+  const  handleIncrement = ()=> { 
+    if(quantinty >= 5) return
+    setQuantity(quantinty + 1)
+  }
+
+  const  handleDecrement = ()=> { 
+    if(quantinty <= 1) return
+
+    setQuantity(quantinty - 1)
+  }
+
+  useEffect(() => {
+    console.log(cart)
+  } ,[cart])
   return (
     <Layout>
       <div className={style.container}>
@@ -45,9 +68,14 @@ const Product = ({ data, query }: any) => {
             </select>
           </div>
 
-          <input type="text" />
+          <div>
+            <button onClick={handleIncrement}>+</button>
+          <input type="number" value={quantinty} readOnly min={1} />
+          <button onClick={handleDecrement}>-</button>
 
-          <button>Añadir al carrito</button>
+          </div>
+
+          <button onClick={ () => addCart(product, quantinty) }>Añadir al carrito</button>
         </div>
       </div>
     </Layout>

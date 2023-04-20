@@ -15,7 +15,7 @@ const Layout = ({children}:any) => {
 
   const ProductContext = useContext(productContext)
 
-  const { getAllProducts,allProducts,categories,setCategories} = ProductContext
+  const { getAllProducts,allProducts,categories,setCategories,cart} = ProductContext
   
 
   const arreglo = []
@@ -74,6 +74,8 @@ const Layout = ({children}:any) => {
             <Link href={"/cart"} className={style.cart}>
               <p>Carrito</p>
               <FontAwesomeIcon icon={faCartShopping} />
+              <p>{cart.length}</p>
+
                </Link>
            
             
