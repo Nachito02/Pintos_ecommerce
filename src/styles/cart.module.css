@@ -1,0 +1,31 @@
+.unorderList {
+    list-style: none;
+    flex: 2;
+
+}
+
+
+.containerProduct {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e1e1e1;
+}
+
+.resume {
+    flex: 1;
+    text-align: center;
+}
+.containerProduct img {
+    width: 100px;
+    height: 100px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container {
+    display: flex;
+}

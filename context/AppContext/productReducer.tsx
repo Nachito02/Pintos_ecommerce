@@ -1,5 +1,5 @@
 
-import { ADD_CART, GET_ALL_PRODUCTS, GET_CATEGORIES, GET_PRODUCT, SET_CATEGORIES, UPDATE_CART } from "../../types"
+import { ADD_CART, GET_ALL_PRODUCTS, UPDATE_QUANTITY, GET_PRODUCT, SET_CATEGORIES, UPDATE_CART } from "../../types"
 export default (state:any,action:any) => {
 
     switch(action.type) {
@@ -30,6 +30,20 @@ export default (state:any,action:any) => {
                     return {
                         ...state , cart: action.payload
                     }
+
+                    case UPDATE_QUANTITY:
+                        const updatedCart = state.cart.map((item:any) =>
+                          item.product.code === action.payload.code
+                            ? { ...item, quantity: action.payload.quantity }
+                            : item
+                        );
+                        console.log(updatedCart)
+
+                        localStorage.setItem('cart', JSON.stringify(updatedCart))
+                        return {
+                          ...state,
+                          cart: updatedCart,
+                        };
     }
 
 }

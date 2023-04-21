@@ -17,6 +17,13 @@ const Layout = ({children}:any) => {
 
   const { getAllProducts,allProducts,categories,setCategories,cart} = ProductContext
   
+  const [quantity, setQuantity] = useState(0)
+
+  useEffect(() => { 
+
+      setQuantity(cart.length)
+
+   },[cart])
 
   const arreglo = []
   useEffect(() => {
@@ -74,7 +81,7 @@ const Layout = ({children}:any) => {
             <Link href={"/cart"} className={style.cart}>
               <p>Carrito</p>
               <FontAwesomeIcon icon={faCartShopping} />
-              <p>{cart.length}</p>
+              <p>{quantity}</p>
 
                </Link>
            

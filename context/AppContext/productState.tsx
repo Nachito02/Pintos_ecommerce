@@ -1,7 +1,7 @@
 import axios, { all } from "axios";
 import { useReducer } from "react";
 import productReducer from "./productReducer";
-import { ADD_CART, GET_ALL_PRODUCTS, UPDATE_CART, GET_PRODUCT,SET_CATEGORIES } from "../../types";
+import { ADD_CART, GET_ALL_PRODUCTS, UPDATE_CART, UPDATE_QUANTITY,SET_CATEGORIES } from "../../types";
 import productContext from "./productContext";
 
 const ProductState = ({ children }: any) => {
@@ -72,12 +72,18 @@ const ProductState = ({ children }: any) => {
           type: ADD_CART,
           payload: {product, quantity}
         })
-      }
-
-       
-
-      
+      }      
     }
+
+
+    const updateCart = (product:any, quantity:any) => {
+      console.log(product.code)
+      dispatch({
+        type: UPDATE_QUANTITY,
+        payload: { code: product.defaultArticle.code, quantity },
+      });
+    };
+
   return (
     <productContext.Provider value={{
       cart: state.cart,
@@ -86,7 +92,8 @@ const ProductState = ({ children }: any) => {
       allProducts: state.allProducts,
       getAllProducts,
       setCategories,
-      addCart
+      addCart,
+      updateCart
     }}>
 
       {children}
