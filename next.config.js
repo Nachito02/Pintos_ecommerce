@@ -10,6 +10,12 @@ const nextConfig = {
         port: '',
         pathname: '/assets/**',
       },
+      {
+        protocol: 'https',
+        hostname: '"lp2.hm.com',
+        port: '',
+        pathname: '/**/**',
+      },
     ],
   },
 }

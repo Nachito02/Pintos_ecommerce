@@ -1,0 +1,28 @@
+.container {
+  
+    display :grid;
+    grid-template-columns: repeat(4, 250px);
+    gap: 2rem;
+    padding: 1.5rem;
+    place-content: center;
+}
+
+.card {
+    border: 1px solid #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info p {
+    margin: 0;
+}

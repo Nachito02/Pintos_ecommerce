@@ -11,7 +11,7 @@ const Cart = () => {
     const [total, setTotal] = useState(0)
     const ProductContext = useContext(productContext)
 
-    const { cart, allProducts,addCart, updateCart } = ProductContext
+    const { cart, allProducts,deleteItem, updateCart } = ProductContext
 
     console.log(cart)
     useEffect(() => {
@@ -54,7 +54,8 @@ const Cart = () => {
     return (
         <Layout>
                 <div className={style.container}>
-                {loading === true ? <p>No hay productos en el carrito</p> :
+                {loading === true || !cart.length ? <p>No hay productos en el carrito</p> :
+                  <>
                 <ul className={style.unorderList}>
                     {cart.map((cartItem: any) => {
                         const product = allProducts.find((product: any) => product.defaultArticle.code === cartItem.product.code)
@@ -83,6 +84,8 @@ const Cart = () => {
                         </div>
 
                                     <p>Sub total:{totalPrice}</p>
+                                    <Button variant="danger" onClick={ () =>  deleteItem(cartItem.product.code) }>Eliminar del carrito</Button>
+
                                     </div>
                                 </div>
                             </li>
@@ -91,16 +94,18 @@ const Cart = () => {
                        
                     }
                 </ul>
-
-            }
-
-                   <div className={style.resume}>
+                <div className={style.resume}>
                    <h2>Total del carrito</h2>
                   <p>Total: ${total}</p> 
                    <Button variant="secondary">Finalizar compra</Button>
                    </div>
+                </>
+
+            }
+
+                  
                 </div>
-            
+
                     </Layout>
     )
 }
