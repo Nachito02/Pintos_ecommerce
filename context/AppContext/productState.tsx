@@ -1,4 +1,4 @@
-import axios, { all } from "axios";
+import axios from "axios";
 import { useReducer } from "react";
 import productReducer from "./productReducer";
 import { ADD_CART, GET_ALL_PRODUCTS, UPDATE_CART, UPDATE_QUANTITY,SET_CATEGORIES, DELETE_ITEM } from "../../types";
@@ -59,6 +59,8 @@ const ProductState = ({ children }: any) => {
     const  addCart = (product:any, quantity:number)=> { 
 
       const existingProduct = state.cart.findIndex((p:any) => p.product.code === product.code)
+
+      
 
       if(existingProduct !== -1) {
         const updatedCart = [...state.cart];

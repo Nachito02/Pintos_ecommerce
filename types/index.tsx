@@ -8,3 +8,6 @@ export const UPDATE_CART = "UPDATE_CART"
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY"
 
 export const DELETE_ITEM = "DELETE_ITEM"
+
+
+export const LOGIN_USER = "LOGIN_USER"

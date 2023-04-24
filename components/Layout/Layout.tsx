@@ -1,45 +1,39 @@
-import React, { useState,useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import style from "./Layout.module.css";
 import Image from "next/image";
-import {  Navbar, NavDropdown } from "react-bootstrap";
+import { Navbar, NavDropdown } from "react-bootstrap";
 import Footer from "../Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import productContext from "../../context/AppContext/productContext";
+import authContext from "../../context/AuthContext/authContext";
+const Layout = ({ children }: any) => {
+  const ProductContext = useContext(productContext);
+  const AuthContext = useContext(authContext)
+  const { getAllProducts, allProducts, categories, setCategories, cart } =
+    ProductContext;
 
+    const {user} = AuthContext
 
-
-const Layout = ({children}:any) => {
-
-
-  const ProductContext = useContext(productContext)
-
-  const { getAllProducts,allProducts,categories,setCategories,cart} = ProductContext
-  
-  const [quantity, setQuantity] = useState(0)
-
-  useEffect(() => { 
-
-      setQuantity(cart.length)
-
-   },[cart])
-
-  const arreglo = []
-  useEffect(() => {
-    getAllProducts()
-  }, [])
-  
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    if(allProducts) {
-      setCategories()
+    if(cart) {
+      setQuantity(cart.length);
     }
-  console.log(categories)
+  }, [cart]);
 
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  useEffect(() => {
+    if (allProducts) {
+      setCategories();
     }
-
-  , [allProducts]);
+    console.log(categories);
+  }, [allProducts]);
 
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
@@ -49,13 +43,18 @@ const Layout = ({children}:any) => {
     setShow(false);
   };
 
-
   return (
     <>
       <header>
         <div className={style.header}>
           <div>
-            <Image priority width={120} alt="pintos hogar y confort" height={120} src={'/../public/assets/logopintos.png'} />
+            <Image
+              priority
+              width={120}
+              alt="pintos hogar y confort"
+              height={120}
+              src={"/../public/assets/logopintos.png"}
+            />
           </div>
 
           <div className={`input-group mb-3 ${style.search}`}>
@@ -77,15 +76,12 @@ const Layout = ({children}:any) => {
 
           <div className={style.header_link}>
             <Link href={"/login"}>Acceder</Link>
-
+              <p>{user?.name}</p>
             <Link href={"/cart"} className={style.cart}>
               <p>Carrito</p>
               <FontAwesomeIcon icon={faCartShopping} />
               <p>{quantity}</p>
-
-               </Link>
-           
-            
+            </Link>
           </div>
         </div>
 
@@ -98,23 +94,28 @@ const Layout = ({children}:any) => {
           </Navbar.Brand>
 
           {categories === null ? (
-  <p>Cargando categorías...</p>
-) : (
-  <NavDropdown title="Productos" show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
-    <div className={style.grid}>
-      {categories.map(((cat :any,index:number) => (
-        <div key={index}>
-          <NavDropdown.Item>
-            <Link href={`/categories/${cat}`}>{cat}</Link>
-          </NavDropdown.Item>
-          <li>
-            <hr className="dropdown-divider" />
-          </li>
-        </div>
-      )))}
-    </div>
-  </NavDropdown>
-)}
+            <p>Cargando categorías...</p>
+          ) : (
+            <NavDropdown
+              title="Productos"
+              show={show}
+              onMouseEnter={showDropdown}
+              onMouseLeave={hideDropdown}
+            >
+              <div className={style.grid}>
+                {categories.map((cat: any, index: number) => (
+                  <div key={index}>
+                    <NavDropdown.Item>
+                      <Link href={`/categories/${cat}`}>{cat}</Link>
+                    </NavDropdown.Item>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                  </div>
+                ))}
+              </div>
+            </NavDropdown>
+          )}
           <Navbar.Brand>
             <Link href={"/"}>Promociones</Link>
           </Navbar.Brand>
@@ -125,13 +126,10 @@ const Layout = ({children}:any) => {
         </Navbar>
       </header>
 
-    {children}
+      {children}
 
       <Footer />
     </>
   );
 };
 export default Layout;
-
-
-

@@ -18,7 +18,9 @@ const Product = ({ data, query }: any) => {
     const {product} = data
 
     useEffect(() => {
+     if(cart) {
       localStorage.setItem('cart', JSON.stringify(cart));
+     }
     }, [cart]);
 
   const  handleIncrement = ()=> { 
@@ -43,9 +45,9 @@ const Product = ({ data, query }: any) => {
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&
             product.articlesList[0].galleryDetails.map((e:any, index:number) => (
-              <SideBySideMagnifier key={index} imageSrc={e.baseUrl} alwaysInPlace={true}>
+              <GlassMagnifier key={index} imageSrc={e.baseUrl} alwaysInPlace={true}>
                 <img src={e.baseUrl} alt="Sillón" />
-              </SideBySideMagnifier>
+              </GlassMagnifier>
             ))}
         </Carousel> 
 
