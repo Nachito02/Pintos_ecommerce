@@ -2,7 +2,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 import User from "../model/User";
-
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -25,7 +24,6 @@ passport.use(new GoogleStrategy({
                     password:profile.emails[0].value,
                     profile_img: profile.photos[0].value
                   })
-                  req.user = user
                 done(null, user);
             } else {
               req.user = findUser

@@ -12,7 +12,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '"lp2.hm.com',
+        hostname: 'lp2.hm.com',
+        port: '',
+        pathname: '/**/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
         port: '',
         pathname: '/**/**',
       },

@@ -65,3 +65,12 @@ width: 20rem;
   gap: 1rem;
 }
 
+.info_user {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.info_user img {
+  border-radius: 50%;
+}

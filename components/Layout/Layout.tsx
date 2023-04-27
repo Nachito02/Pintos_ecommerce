@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, use } from "react";
 import Link from "next/link";
 import style from "./Layout.module.css";
 import Image from "next/image";
@@ -14,7 +14,7 @@ const Layout = ({ children }: any) => {
   const { getAllProducts, allProducts, categories, setCategories, cart } =
     ProductContext;
 
-    const {user} = AuthContext
+    const {user,setUser} = AuthContext
 
   const [quantity, setQuantity] = useState(0);
 
@@ -32,8 +32,13 @@ const Layout = ({ children }: any) => {
     if (allProducts) {
       setCategories();
     }
-    console.log(categories);
   }, [allProducts]);
+
+
+  useEffect(() => {
+    setUser()
+  }, []);
+  console.log(user)
 
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {
@@ -75,8 +80,16 @@ const Layout = ({ children }: any) => {
           </div>
 
           <div className={style.header_link}>
-            <Link href={"/login"}>Acceder</Link>
-              <p>{user?.name}</p>
+            {!user ? (
+              <Link href={"/api/login"}>Acceder</Link>
+            ) : 
+              <div className={style.info_user}>
+               <Image src={user.profile_img} width={50} height={50} alt={user.name}/>
+               <Link href={"/"}>{user.name}</Link>
+               <Link href={"/api/logout"}>cerrar sesion</Link>
+
+               </div>
+            }
             <Link href={"/cart"} className={style.cart}>
               <p>Carrito</p>
               <FontAwesomeIcon icon={faCartShopping} />
@@ -133,3 +146,4 @@ const Layout = ({ children }: any) => {
   );
 };
 export default Layout;
+
