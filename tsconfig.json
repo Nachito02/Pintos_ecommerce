@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/middleware.ts", "src/pages/api/mercadoPago.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/middleware.ts", "src/pages/api/mercadoPago.ts"],
   "exclude": ["node_modules"]
 }

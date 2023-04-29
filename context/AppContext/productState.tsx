@@ -10,7 +10,7 @@ const ProductState = ({ children }: any) => {
     categories: null,
     productDetail: null,
     allProducts: null,
-    cart: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')) : []
+    cart: typeof window !== 'undefined' && localStorage.getItem('cart') !== null ? JSON.parse(localStorage.getItem('cart')) : []
   }
 
   const [state, dispatch] = useReducer(productReducer, initialState)

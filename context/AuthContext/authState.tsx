@@ -1,13 +1,12 @@
 import authReducer from "./authReducer"
 import {useReducer} from 'react'
 import authContext from "./authContext"
-import { LOGIN_USER } from "../../types"
+import { LOGIN_USER, LOGOUT_USER } from "../../types"
 import axios from "axios"
 const AuthState = ({children}:any) => {
     const initialState = {
         user:null
     }
-
 
     const [state,dispatch] = useReducer(authReducer,initialState)
 
@@ -26,10 +25,18 @@ const AuthState = ({children}:any) => {
             console.log(error)
         }
       };
+
+      const logout = () => {
+           dispatch({
+            type: LOGOUT_USER,
+            payload: null
+           })
+      }
     return (
         <authContext.Provider value={{
             user:state.user,
-            setUser
+            setUser,
+            logout
         }}>
             {children}
         </authContext.Provider>

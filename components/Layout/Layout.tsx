@@ -14,7 +14,7 @@ const Layout = ({ children }: any) => {
   const { getAllProducts, allProducts, categories, setCategories, cart } =
     ProductContext;
 
-    const {user,setUser} = AuthContext
+    const {user,setUser, logout} = AuthContext
 
   const [quantity, setQuantity] = useState(0);
 
@@ -22,6 +22,8 @@ const Layout = ({ children }: any) => {
     if(cart) {
       setQuantity(cart.length);
     }
+
+    console.log(cart)
   }, [cart]);
 
   useEffect(() => {
@@ -77,6 +79,7 @@ const Layout = ({ children }: any) => {
               Buscar
             </button>
           </div>
+        
 
           <div className={style.header_link}>
             {!user ? (
@@ -85,7 +88,8 @@ const Layout = ({ children }: any) => {
               <div className={style.info_user}>
                <Image src={user.profile_img} width={50} height={50} alt={user.name}/>
                <Link href={"/"}>{user.name}</Link>
-               <Link href={"/api/logout"}>cerrar sesion</Link>
+               <Link href={"/api/logout"} onClick={logout}>cerrar sesion</Link>
+               
 
                </div>
             }

@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const {userToken} = req.cookies
+
+    if(!userToken) res.redirect('/')
     jwt.verify(userToken, process.env.JWT_SECRET)
     const serialized = serialize('userToken', null, {
       httpOnly:true,

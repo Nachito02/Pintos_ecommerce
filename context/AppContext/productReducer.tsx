@@ -46,6 +46,7 @@ export default (state: any, action: any) => {
 
             case DELETE_ITEM:
                 const updateCart= state.cart.filter((item:any) => item.product.code !== action.payload) 
+                localStorage.setItem('cart', JSON.stringify(updateCart))
                 return {
                     ...state,
                     cart: updateCart

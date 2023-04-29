@@ -5,13 +5,21 @@ import Image from "next/image";
 import style from "../styles/cart.module.css";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import {Wallet, initMercadoPago,Payment} from '@mercadopago/sdk-react'
-initMercadoPago('TEST-dcf44a86-da0a-48fb-8f7e-f7f52e5d5348')
-
+import dynamic from 'next/dynamic'
 const Cart = () => {
+
+  const Wallet = dynamic(() =>
+  import('@mercadopago/sdk-react')
+  .then((mod) => mod.Wallet),{ssr:false})
+
+  const initMercadoPago = () =>
+  import('@mercadopago/sdk-react')
+    .then((mod) => mod.initMercadoPago('TEST-dcf44a86-da0a-48fb-8f7e-f7f52e5d5348'))
+
+
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
-  const [preferenceId, setPreferenceId] = useState(null)
+  const [preferenceId, setPreferenceId] = useState('')
   const ProductContext = useContext(productContext);
 
   const { cart, allProducts, deleteItem, updateCart } = ProductContext;
@@ -19,7 +27,7 @@ const Cart = () => {
   useEffect(() => {
     let sum = 0;
 
-    if (allProducts && allProducts.length) {
+    if (allProducts && allProducts.length && cart !=null) {
       cart.forEach((cartItem: any) => {
         const product = allProducts.find(
           (product: any) =>
@@ -38,22 +46,18 @@ const Cart = () => {
     }
   }, [allProducts]);
 
-  useEffect(() => {
-    
-    const getPreferenceId = async () => {
+  const getPreferenceId = async () => {
+    initMercadoPago()
     try {
-        const response:any = await axios.get('http://localhost:3000/api/mercadoPago')
+        const response:any = await axios.post('http://localhost:3000/api/mercadoPago')
 
         setPreferenceId(response.data)
         console.log(preferenceId)
-    } catch (error) {
+    } catch (error:any) {
         console.log(error.message)
     }
    }
    
-   !preferenceId && getPreferenceId()
-
-  },[])
 
   const handleIncrement = (cartItem: any) => {
     const product = allProducts.find(
@@ -63,6 +67,8 @@ const Cart = () => {
     const newQuantity = cartItem.quantity + 1;
     updateCart(product, newQuantity);
   };
+
+  
 
   const handleDecrement = (cartItem: any) => {
     if (cartItem.quantity === 1) return;
@@ -140,9 +146,9 @@ const Cart = () => {
             <div className={style.resume}>
               <h2>Total del carrito</h2>
               <p>Total: ${total}</p>
-              <Button variant="secondary">Finalizar compra</Button>
+              <Button variant="secondary" onClick={getPreferenceId}>Finalizar compra</Button>
 
-              <Wallet customization={customization} initialization={ { preferenceId: "267028509-c5faaa45-ec25-4764-9d40-60ab7759207d",redirectMode:"modal"} } />
+              <Wallet customization={customization} initialization={ { preferenceId: preferenceId,redirectMode:"modal"} } />
             </div>
 
           </>

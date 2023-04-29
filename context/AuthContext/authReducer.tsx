@@ -1,4 +1,4 @@
-import { LOGIN_USER } from "../../types";
+import { LOGIN_USER, LOGOUT_USER } from "../../types";
 
 export default (state:any,action:any) => {
 
@@ -6,6 +6,12 @@ export default (state:any,action:any) => {
         case LOGIN_USER:
             return {
                 ...state, user:action.payload
+            }
+
+            case LOGOUT_USER: {
+                return {
+                    ...state, user:null
+                }
             }
     }
 
