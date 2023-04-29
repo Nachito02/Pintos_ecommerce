@@ -34,9 +34,7 @@ const Product = ({ data, query }: any) => {
     setQuantity(quantinty - 1)
   }
 
-  useEffect(() => {
-    console.log(cart)
-  } ,[cart])
+
   return (
     <Layout>
       <div className={style.container}>
@@ -87,7 +85,6 @@ const Product = ({ data, query }: any) => {
 
 export async function getServerSideProps({query}:any) {
 
-  console.log(query)
   const options = {
     method: "GET",
     url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",

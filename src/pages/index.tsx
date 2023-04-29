@@ -4,9 +4,9 @@ import SliderComponent from "../../components/Slider/Slider";
 import Info from "../../components/Info/Info";
 import Categories from "../../components/categories/Categories";
 import AboutIndex from "../../components/AboutIndex/AboutIndex";
-import axios from 'axios'
 export default function Home() {
- 
+
+
 
   return (
     <>

@@ -38,7 +38,6 @@ const Layout = ({ children }: any) => {
   useEffect(() => {
     setUser()
   }, []);
-  console.log(user)
 
   const [show, setShow] = useState(false);
   const showDropdown = (e: any) => {

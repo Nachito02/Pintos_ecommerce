@@ -20,7 +20,6 @@ const Categories = () => {
          }
     },[allProducts])
 
-    console.log(products)
   return (
     <Layout>
    

@@ -79,7 +79,6 @@ const ProductState = ({ children }: any) => {
 
 
     const updateCart = (product:any, quantity:any) => {
-      console.log(product.code)
       dispatch({
         type: UPDATE_QUANTITY,
         payload: { code: product.defaultArticle.code, quantity },
@@ -88,7 +87,6 @@ const ProductState = ({ children }: any) => {
 
     const deleteItem = (code:any) => {
 
-        console.log(code)
       dispatch({
         type:DELETE_ITEM,
         payload:code
