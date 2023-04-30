@@ -59,7 +59,7 @@ const Layout = ({ children }: any) => {
               width={120}
               alt="pintos hogar y confort"
               height={120}
-              src={"/../public/assets/logopintos.png"}
+              src={"/assets/logopintos.png"}
             />
           </div>
 
