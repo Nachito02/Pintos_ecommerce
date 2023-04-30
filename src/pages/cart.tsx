@@ -79,12 +79,7 @@ const Cart = () => {
     updateCart(product, newQuantity);
   };
 
-  const customization = {
-    texts: {
-      action: 'pay',
-      valueProp: 'security_details',
-    },
-   }
+  
   return (
     <Layout>
       <div className={style.container}>
@@ -148,7 +143,7 @@ const Cart = () => {
               <p>Total: ${total}</p>
               <Button variant="secondary" onClick={getPreferenceId}>Finalizar compra</Button>
 
-              <Wallet customization={customization} initialization={ { preferenceId: preferenceId,redirectMode:"modal"} } />
+              <Wallet initialization={ { preferenceId: preferenceId,redirectMode:"modal"} } />
             </div>
 
           </>

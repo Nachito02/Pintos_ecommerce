@@ -8,7 +8,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     if(!userToken) res.redirect('/')
     jwt.verify(userToken, process.env.JWT_SECRET)
-    const serialized = serialize('userToken', null, {
+    const serialized = serialize('userToken', '', {
       httpOnly:true,
       secure:false,
       sameSite:'strict',

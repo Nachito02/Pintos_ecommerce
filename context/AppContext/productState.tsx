@@ -6,11 +6,14 @@ import productContext from "./productContext";
 
 const ProductState = ({ children }: any) => {
 
+  const cartFromLocalStorage:any = typeof window !== 'undefined' && localStorage.getItem('cart');
+  const cart = typeof window !== 'undefined' && cartFromLocalStorage !== null ? JSON.parse(cartFromLocalStorage) : [];
   const initialState = {
     categories: null,
     productDetail: null,
     allProducts: null,
-    cart: typeof window !== 'undefined' && localStorage.getItem('cart') !== null ? JSON.parse(localStorage.getItem('cart')) : []
+    // eslint-disable-next-line
+    cart
   }
 
   const [state, dispatch] = useReducer(productReducer, initialState)

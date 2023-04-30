@@ -42,10 +42,9 @@ const Product = ({ data, query }: any) => {
           {product.articlesList &&
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&
-            product.articlesList[0].galleryDetails.map((e:any, index:number) => (
-              <GlassMagnifier key={index} imageSrc={e.baseUrl} alwaysInPlace={true}>
-                <img src={e.baseUrl} alt="Sillón" />
-              </GlassMagnifier>
+            product.articlesList[0].galleryDetails.map((e:any, i:any) => (
+              <GlassMagnifier imageSrc={e.baseUrl} {...<img src={e.baseUrl}/>} />
+              
             ))}
         </Carousel> 
 

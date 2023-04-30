@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const jwt = require('jsonwebtoken')
 import { serialize} from 'cookie'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req:any, res: NextApiResponse) {
 
     passport.authenticate("google", { failureRedirect: "/login", session: false })(req, res, () => {
       // La autenticación fue exitosa, redirecciona al usuario a la página deseada
