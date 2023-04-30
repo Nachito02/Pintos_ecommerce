@@ -38,15 +38,28 @@ const ProductState = ({ children }: any) => {
 
   const getAllProducts = async () => {
 
-      const options = {
-        method: 'GET',
-        url: 'http://localhost:3001/results',
-      };
+    const options = {
+      method: 'GET',
+      url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list',
+      params: {
+        country: 'us',
+        lang: 'en',
+        currentpage: '0',
+        pagesize: '30',
+        categories: 'men_all',
+        concepts: 'H&M MAN'
+      },
+      headers: {
+        'content-type': 'application/octet-stream',
+        'X-RapidAPI-Key': 'd54d3f253amsh410aa104bec79e3p1c2a9ejsn8c1e19d8c2ce',
+        'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+      }
+    };
 
       try {
         const response = await axios.request(options);
-        const data = response.data;
-        
+        const data = response.data.results;
+        console.log(data)
         dispatch({
           type: GET_ALL_PRODUCTS,
           payload: data

@@ -5,7 +5,7 @@ import User from "../model/User";
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/api/auth/google/callback",
+    callbackURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google/callback`,
     scope:["profile", "email"],
     session:false,
     passReqToCallback: true

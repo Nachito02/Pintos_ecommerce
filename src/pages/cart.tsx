@@ -6,6 +6,7 @@ import style from "../styles/cart.module.css";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import dynamic from 'next/dynamic'
+import clienteAxios from "../../config/clienteAxios";
 const Cart = () => {
 
   const Wallet = dynamic(() =>
@@ -49,7 +50,7 @@ const Cart = () => {
   const getPreferenceId = async () => {
     initMercadoPago()
     try {
-        const response:any = await axios.post('http://localhost:3000/api/mercadoPago')
+        const response:any = await clienteAxios.post('/api/mercadoPago')
 
         setPreferenceId(response.data)
         console.log(preferenceId)

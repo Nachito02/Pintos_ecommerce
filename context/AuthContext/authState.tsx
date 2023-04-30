@@ -3,6 +3,7 @@ import {useReducer} from 'react'
 import authContext from "./authContext"
 import { LOGIN_USER, LOGOUT_USER } from "../../types"
 import axios from "axios"
+import clienteAxios from "../../config/clienteAxios"
 const AuthState = ({children}:any) => {
     const initialState = {
         user:null
@@ -12,7 +13,7 @@ const AuthState = ({children}:any) => {
 
     const setUser = async() => {
         try{
-            const response = await axios.get('http://localhost:3000/api/profile')
+            const response = await clienteAxios.get('/api/profile')
 
             if(response.data.user) {
                 dispatch({
