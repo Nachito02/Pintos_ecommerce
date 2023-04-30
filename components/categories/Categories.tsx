@@ -27,7 +27,7 @@ const Categories = () => {
         <Slider {...settings} className={style.slider}>
           <div className={style.container_img}>
             <Image
-              src={"/../public/assets/categories/oficina.jpg"}
+              src={"/assets/categories/oficina.jpg"}
               width={365}
               height={315}
               alt="oficina"
@@ -39,7 +39,7 @@ const Categories = () => {
 
           <div className={style.container_img}>
             <Image
-              src={"/../public/assets/categories/bibliotecas.jpg"}
+              src={"/assets/categories/bibliotecas.jpg"}
               width={365}
               height={315}
               alt="oficina"
@@ -50,7 +50,7 @@ const Categories = () => {
           </div>
           <div className={style.container_img}>
             <Image
-              src={"/../public/assets/categories/mesatv.jpg"}
+              src={"/assets/categories/mesatv.jpg"}
               width={365}
               height={315}
               alt="oficina"
@@ -61,7 +61,7 @@ const Categories = () => {
           </div>
           <div className={style.container_img}>
             <Image
-              src={"/../public/assets/categories/sillascategories.jpg"}
+              src={"/assets/categories/sillascategories.jpg"}
               width={365}
               height={315}
               alt="oficina"
@@ -72,7 +72,7 @@ const Categories = () => {
           </div>
           <div className={style.container_img}>
             <Image
-              src={"/../public/assets/categories/oficina.jpg"}
+              src={"/assets/categories/oficina.jpg"}
               width={365}
               height={315}
               alt="oficina"

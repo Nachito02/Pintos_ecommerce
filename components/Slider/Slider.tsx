@@ -96,50 +96,7 @@ export default function SliderComponent() {
           </div></Link>
         ))}
 
-        {/* <div className={style.container_img}>
-            <Image
-              src={"/../public/assets/envios.png"}
-              width={360}
-              height={400}
-              alt="imagen"
-            />
-
-          </div>
-
-          <div className={style.container_img}>
-            <Image
-              src={"/../public/assets/silla.png"}
-              width={360}
-              height={400}
-              alt="imagen"
-            />
-          </div>
-          <div className={style.container_img}>
-            <Image
-              src={"/../public/assets/silla2.png"}
-              width={360}
-              height={400}
-              alt="imagen"
-            />
-          </div>
-          <div className={style.container_img}>
-            <Image
-              src={"/../public/assets/sillon.png"}
-              width={360}
-              height={400}
-              alt="imagen"
-            />
-          </div>
-          <div className={style.container_img}>
-           
-            <Image
-            priority
-              src={"/../public/assets/combo.png"}
-              width={360}
-              height={400}
-              alt="imagen"
-            />
-          </div> */}
+       
       </Slider>
 
     </>

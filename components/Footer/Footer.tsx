@@ -43,80 +43,80 @@ const Footer = () => {
 
         <div>
           <Image
-            src={"/../public/assets/pagos/visa.png"}
+            src={"/assets/pagos/visa.png"}
             width={41}
             height={25}
             alt="visa"
           />
           <Image
-            src={"/../public/assets/pagos/mastercard.png"}
+            src={"/assets/pagos/mastercard.png"}
             width={41}
             height={25}
             alt="mastercard"
           />
           <Image
-            src={"/../public/assets/pagos/amex.png"}
+            src={"/assets/pagos/amex.png"}
             width={41}
             height={25}
             alt="amex"
           />
 
           <Image
-            src={"/../public/assets/pagos/diners.png"}
+            src={"/assets/pagos/diners.png"}
             width={41}
             height={25}
             alt="diners"
           />
           <Image
-            src={"/../public/assets/pagos/banelco.png"}
+            src={"/assets/pagos/banelco.png"}
             width={41}
             height={25}
             alt="banelco"
           />
           <Image
-            src={"/../public/assets/pagos/cabal.png"}
+            src={"/assets/pagos/cabal.png"}
             width={41}
             height={25}
             alt="cabal"
           />
           <Image
-            src={"/../public/assets/pagos/naranja.png"}
+            src={"/assets/pagos/naranja.png"}
             width={41}
             height={25}
             alt="naranja"
           />
           <Image
-            src={"/../public/assets/pagos/tarjeta-shopping.png"}
+            src={"/assets/pagos/tarjeta-shopping.png"}
             width={41}
             height={25}
             alt="tarjeta-shopping"
           />
           <Image
-            src={"/../public/assets/pagos/mercadopago.png"}
+            src={"/assets/pagos/mercadopago.png"}
             width={41}
             height={25}
             alt="mercadopago"
           />
           <Image
-            src={"/../public/assets/pagos/argencard.png"}
+            src={"/assets/pagos/argencard.png"}
             width={41}
             height={25}
             alt="argencard"
           />
           <Image
-            src={"/../public/assets/pagos/nativa.png"}
+            src={"/assets/pagos/nativa.png"}
             width={41}
             height={25}
             alt="nativa"
           />
           <Image
-            src={"/../public/assets/pagos/pagofacil.png"}
+            src={"/assets/pagos/pagofacil.png"}
             width={41}
             height={25}
             alt="pagofacil"
           />
           <Image
-            src={"/../public/assets/pagos/rapipago.png"}
+            src={"/assets/pagos/rapipago.png"}
             width={41}
             height={25}
             alt="rapipago"

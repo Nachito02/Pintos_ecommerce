@@ -7,7 +7,7 @@ const Info = () => {
     <div className={style.container}>
       <div>
         <Image
-          src={"/../public/assets/entrega.png"}
+          src={"/assets/entrega.png"}
           width={102}
           height={99}
           alt="envios a todo el pais"
@@ -20,7 +20,7 @@ const Info = () => {
 
       <div>
         <Image
-          src={"/../public/assets/efectivo.png"}
+          src={"/assets/efectivo.png"}
           width={102}
           height={99}
           alt="envios a todo el pais"
@@ -33,7 +33,7 @@ const Info = () => {
 
       <div>
         <Image
-          src={"/../public/assets/tarjeta.png"}
+          src={"/assets/tarjeta.png"}
           width={102}
           height={99}
           alt="envios a todo el pais"
@@ -46,7 +46,7 @@ const Info = () => {
 
       <div>
         <Image
-          src={"/../public/assets/web.png"}
+          src={"/assets/web.png"}
           width={102}
           height={99}
           alt="envios a todo el pais"
