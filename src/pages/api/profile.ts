@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         }
         try {
         const user = jwt.verify(userToken, process.env.JWT_SECRET)
-
+                res.status(200).json({msg : 'Login Succes'})
         res.json(user)
         } catch (error:any) {
                 throw new Error('no funciona')

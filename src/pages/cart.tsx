@@ -4,9 +4,10 @@ import productContext from "../../context/AppContext/productContext";
 import Image from "next/image";
 import style from "../styles/cart.module.css";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import dynamic from 'next/dynamic'
 import clienteAxios from "../../config/clienteAxios";
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Cart = () => {
 
   const Wallet = dynamic(() =>
@@ -22,7 +23,7 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   const [preferenceId, setPreferenceId] = useState('')
   const ProductContext = useContext(productContext);
-
+  const [loadginButton, setLoadingButton] = useState(false)
   const { cart, allProducts, deleteItem, updateCart } = ProductContext;
   
   useEffect(() => {
@@ -50,10 +51,13 @@ const Cart = () => {
   const getPreferenceId = async () => {
     initMercadoPago()
     try {
+
+      setLoadingButton(true)
         const response:any = await clienteAxios.post('/api/mercadoPago')
 
         setPreferenceId(response.data)
-        console.log(preferenceId)
+        setLoadingButton(false)
+
     } catch (error:any) {
         console.log(error.message)
     }
@@ -144,7 +148,7 @@ const Cart = () => {
               <p>Total: ${total}</p>
               <Button variant="secondary" onClick={getPreferenceId}>Finalizar compra</Button>
 
-              <Wallet initialization={ { preferenceId: preferenceId,redirectMode:"modal"} } />
+                {loadginButton ? <ClipLoader /> :  <Wallet initialization={ { preferenceId: preferenceId,redirectMode:"modal"} } />} 
             </div>
 
           </>
