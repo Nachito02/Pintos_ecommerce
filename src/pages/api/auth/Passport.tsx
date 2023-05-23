@@ -35,5 +35,17 @@ passport.use(new GoogleStrategy({
     }
   }));
 
+  passport.serializeUser(function(user:any, cb:any) {
+  process.nextTick(function() {
+    cb(null, { id: user._id, username: user.name});
+  });
+});
+
+passport.deserializeUser(function(user:any, cb:any) {
+  process.nextTick(function() {
+    return cb(null, user);
+  });
+});
+
 
   export default passport

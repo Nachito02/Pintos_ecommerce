@@ -2,7 +2,8 @@ const mercadopago = require('mercadopago')
 import { NextRequest, NextResponse } from 'next/server';
 
 export default function POST(req:NextRequest,res:any) {
-  console.log('POST')
+  if(req.method === 'POST') {
+    console.log('POST')
     mercadopago.configure({
         access_token: process.env.MP_TOKEN
     })
@@ -28,5 +29,6 @@ export default function POST(req:NextRequest,res:any) {
   .catch(function (error:any) {
     console.log(error);
   });
+  }
  
 }

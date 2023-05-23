@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
 import productContext from "../../../context/AppContext/productContext";
 
-const Product = ({ data, query }: any) => {
+const Product = ({ data, query }) => {
 
 
     const ProductContext = useContext(productContext)
@@ -42,8 +42,12 @@ const Product = ({ data, query }: any) => {
           {product.articlesList &&
             product.articlesList.length > 0 &&
             product.articlesList[0].galleryDetails &&
-            product.articlesList[0].galleryDetails.map((e:any, i:any) => (
-              <GlassMagnifier imageSrc={e.baseUrl} {...<img src={e.baseUrl}/>} />
+            product.articlesList[0].galleryDetails.map((e, i) => (
+              <GlassMagnifier key={i} imageSrc={e.baseUrl}  > 
+              
+              <img src={e.baseUrl}/>
+              </GlassMagnifier>
+
               
             ))}
         </Carousel> 
@@ -82,7 +86,7 @@ const Product = ({ data, query }: any) => {
 };
 
 
-export async function getServerSideProps({query}:any) {
+export async function getServerSideProps({query}) {
 
   const options = {
     method: "GET",

@@ -7,7 +7,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         const {userToken} = req.cookies
  
         if(!userToken) {
-                throw new Error('no funciona')
+                return
         }
         try {
         const user = jwt.verify(userToken, process.env.JWT_SECRET)

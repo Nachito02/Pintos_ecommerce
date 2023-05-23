@@ -88,7 +88,7 @@ const Layout = ({ children }: any) => {
               <div className={style.info_user}>
                <Image src={user.profile_img} width={50} height={50} alt={user.name}/>
                <Link href={"/"}>{user.name}</Link>
-               <Link href={"/api/logout"} onClick={logout}>cerrar sesion</Link>
+               <Link href={"/api/logout"} onClick={logout}>Cerrar sesion</Link>
                
 
                </div>
